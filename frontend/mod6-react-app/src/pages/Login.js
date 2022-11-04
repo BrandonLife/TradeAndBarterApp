@@ -26,7 +26,4 @@ export default function Login(){
 
     )
 
-
-
-    
 }
