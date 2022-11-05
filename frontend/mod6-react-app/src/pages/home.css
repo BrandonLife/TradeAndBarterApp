@@ -1,8 +1,9 @@
-body {
-    background-image: url('../images/post.png'); 
+.home {
+    background-image: url('../images/tradeBarter.png'); 
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 40%;
+    height: 700%;
     
 }
 

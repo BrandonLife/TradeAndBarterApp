@@ -5,7 +5,7 @@ export default function Home(){
 
 
 return(
-    <div>
+    <div className="home">
         <h1 className ="title"><br></br>The Trading Post</h1>
         {/* <br></br>
         <h2>Barter and trade, it's the way!</h2>
