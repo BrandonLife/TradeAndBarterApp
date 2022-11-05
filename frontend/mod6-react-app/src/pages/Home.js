@@ -1,4 +1,8 @@
+import barter from "../images/trade.png"
+import "./home.css"
+
 export default function Home(){
+
 
 return (
 <>
@@ -22,6 +26,6 @@ return (
 
 
 
-
-    
 }
+
+
