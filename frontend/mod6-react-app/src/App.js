@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Account from './pages/Account'
 import Products from './pages/Products'
+import Product from './pages/Product';
 import Contact from './pages/Contact'
 import PageNotFound from './pages/PageNotFound'
 import Login from './pages/Login'
@@ -14,6 +15,7 @@ import Forum from './pages/Forum'
 import Logout from './pages/Logout'
 
 import {Route, Routes} from "react-router-dom"
+import ForumPost from './pages/ForumPost';
 
 
 
@@ -27,7 +29,9 @@ function App() {
      <Route path="/About" element={<About />}/>
      <Route path="/User/account" element={<Account />}/>
      <Route path="/Products" element={<Products />}/>
+     <Route path="/Products/:id" element={<Product />}/>
      <Route path="/Forum" element={<Forum />}/>
+     <Route path="/Forum/Post/:id" element={<ForumPost />}/>
      <Route path="/Contact" element={<Contact />}/>
      <Route path="*" element={<PageNotFound />}/>
      <Route path="User/login" element={<Login />}/>
