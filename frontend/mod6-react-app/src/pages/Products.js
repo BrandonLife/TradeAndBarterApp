@@ -5,6 +5,7 @@ export default function Products(){
 
     return (
 
+
         <div className ="wrapper">
             <Card 
             img="https://images.pexels.com/photos/2030476/pexels-photo-2030476.jpeg?auto=compress&cs=tinysrgb&w=600" 
@@ -58,19 +59,27 @@ export default function Products(){
         </div>
     )
 
-    function Card(props){
-        return(
+        
+        {/* <!-- Header--> */}
+                <header class="bg-dark py-5">
+                    <div class="container px-4 px-lg-5 my-5">
+                        <div class="text-center text-white">
+                            <h1 class="display-4 fw-bolder">Products</h1>
+                            <p class="lead fw-normal text-white-50 mb-0">Enjoy a range of products</p>
+                        </div>
+                    </div>
+                </header>
 
-            <div className="card">
-                <div className="card_body">
-                    <img src={props.img} className="card_image" />                
-                    <h2 className="card_title">{props.title}</h2>
-                    <p className="card_description">{props.description}</p>
-                </div>
-                <button className="card_btn">Wanna Trade?</button>
-            </div>
+                {/* Below this we will have a loop of all the products. For each iteration we will create a new card */}
+              
+        
+        
+        
         )
-    }
+        
+
+
+    
 
 
 }
