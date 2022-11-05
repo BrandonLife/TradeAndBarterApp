@@ -1,8 +1,14 @@
+
 export default function Forum(){
 
 
-    return <h1>Discussion Forum</h1>
-
+    return (
+    <div>
+        <h1>Discussion Forum</h1>
+        
+    </div>
+    
+)
 
 
     

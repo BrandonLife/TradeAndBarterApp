@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.main-navigation {
+    padding: 5px;
+    background-color: rgb(189, 151, 120);
+    color: bisque;
+    display: flex;
+    align-items: center;
+}
+
+.main-navigation-links {
+    font-family:'Courier New', Courier, monospace;
+    font-size: larger;
+    font-weight: 700;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+

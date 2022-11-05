@@ -1,0 +1,24 @@
+body {
+    background-image: url('../images/post.png'); 
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 40%;
+}
+
+.title2 {
+    text-align: center;
+    font-family: fantasy;
+    font-size: 50px;
+    background-color: transparent;
+    color: rgb(127, 49, 7);
+    font-weight: bold;
+    padding-top: 24px;
+}
+
+.info {
+    text-align: center; 
+    font-size: 31px;
+    background-color: transparent;
+    padding: 0% 140px;
+
+}
