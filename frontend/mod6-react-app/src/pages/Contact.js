@@ -25,7 +25,7 @@ export default function Contact(){
         <div className ="country-container">
         <label for="country">Country</label>
     <select id="contact-country" name="contact-country">
-    <option value="">Select a Country</option>
+    <option value=""></option>
     <option value="AF">Afghanistan</option>
     <option value="AX">Aland Islands</option>
     <option value="AL">Albania</option>
