@@ -1,4 +1,3 @@
-import barter from "../images/trade.png"
 import "./home.css"
 
 export default function Home(){
@@ -6,7 +5,7 @@ export default function Home(){
 
 return (
 <>
-{/* <!-- Header--> */}
+
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
@@ -15,6 +14,12 @@ return (
                 </div>
             </div>
         </header>
+        <div className="home">
+        <div className="content">
+       
+        </div>
+       
+        </div>
       
 </>
 
