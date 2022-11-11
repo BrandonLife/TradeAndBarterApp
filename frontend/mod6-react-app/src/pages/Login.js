@@ -5,7 +5,7 @@ export default function Login(){
 
     return (
 <>
-<div className="body-container1">
+<body class="body-container1">
 <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -14,8 +14,8 @@ export default function Login(){
             <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
             <form>
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
-                <label for="floatingInput">Email address</label>
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"/>
+                <label for="floatingInput">Email address or Username</label>
               </div>
               <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password"/>
@@ -32,24 +32,13 @@ export default function Login(){
                 <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
                   in</button>
               </div>
-              <hr class="my-4"/>
-              <div class="d-grid mb-2">
-                <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
-                  <i class="fab fa-google me-2"></i> Sign in with Google
-                </button>
-              </div>
-              <div class="d-grid">
-                <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
-                  <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
-                </button>
-              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</body>
 </>
 
 

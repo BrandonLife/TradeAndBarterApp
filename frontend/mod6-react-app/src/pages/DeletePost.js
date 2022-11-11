@@ -1,10 +1,10 @@
 import "./Forum.css"
-export default function ForumPost(){
+export default function DeletePost(){
 
 
     return (
 <>
-<h1>Post</h1>
+<h1>Delete Post</h1>
 <div class="card single_post">
                     <div class="body">
                         <div class="img-post">
@@ -18,7 +18,7 @@ export default function ForumPost(){
                         <div class="actions">
                             <a href="javascript:void(0);" class="btn btn-outline-secondary">See full article</a>
                         </div>
-                    </div>
+    </div>
 </div>
 </>
 

@@ -1,28 +1,15 @@
+import Card from "../Components/Card"
+import "./products.css"
 export default function Product(){
 
     return (
-<div className="col mb-5">
-        <div class="card h-100">
-            {/* <!-- Product image--> */}
-            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-           {/* /* { <!-- Product details-->} */ }
-            <div class="card-body p-4">
-                <div class="text-center">
-                    {/* <!-- Product name--> */}
-                    <h5 class="fw-bolder">Fancy Product</h5>
-                    {/* <!-- Product price--> */}
-                    $120.00 - $280.00
-                </div>
-            </div>
+        <div className="wrapper">
+<Card 
+        img="https://images.pexels.com/photos/2030476/pexels-photo-2030476.jpeg?auto=compress&cs=tinysrgb&w=600" 
+            title="Sewing Machine"
+            description="This amazing sewing machine has been my sidekick since I opened up my tailoring shop in 2013. If you are good to your tools, your tools will be good to you, my father always told me, and so with a passion I have kept this sewing machine in the best condition.  I was recently gifted an industrial capacity sewing machine and feel it's time to pass on my old friend to a new home.  Wanna trade? ~Value: $500 ~Interested in kitchen equipment, precious metals, rare treasures" />
         </div>
-        {/* <!-- Product actions--> */}
-    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-    </div>
-    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-    </div>
-</div>
+        
     )
    
 

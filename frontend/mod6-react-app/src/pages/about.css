@@ -1,18 +1,21 @@
+
 .picture {
     background-image: url('../images/post.png'); 
-    background-size: 100%;
-    background-repeat: no-repeat;
+   background-repeat: no-repeat;
     background-position: 40%;
-}
+    background-size: cover;
+    padding-bottom: 20%;
+    }
 
 .title2 {
-    text-align: center;
+    
     font-family: fantasy;
     font-size: 50px;
     background-color: transparent;
     color: rgb(127, 49, 7);
     font-weight: bold;
     padding-top: 24px;
+    padding-left: 45%;
 }
 
 .info {
@@ -20,5 +23,6 @@
     font-size: 31px;
     background-color: transparent;
     padding: 0% 140px;
+   
 
 }
