@@ -1,6 +1,10 @@
+import { useState } from "react"
 import "./Register.css"
 export default function Register(){
-
+  const [email, setEmail] =useState('')
+  const [password, setPassword] =useState('')
+  const [username, setUsername] = useState("");
+  const [rePassword, setRePassword] = useState("");
 
     return (
 <>
@@ -17,24 +21,36 @@ export default function Register(){
             <form>
 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus/>
+                <input type="text" class="form-control" id="floatingInputUsername" name="username" placeholder="myusername" value={username} required autofocus onChange={(e) => {
+							//console.log(e.target.value);
+							setUsername(e.target.value);
+						}} />
                 <label for="floatingInputUsername">Username</label>
               </div>
 
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com"/>
+                <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" value={email} onChange={(e) => {
+							//console.log(e.target.value);
+							setEmail(e.target.value);
+						}}/>
                 <label for="floatingInputEmail">Email address</label>
               </div>
 
               <hr/>
 
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"/>
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" value={password} onChange={(e) => {
+							//console.log(e.target.value);
+							setPassword(e.target.value);
+						}}/>
                 <label for="floatingPassword">Password</label>
               </div>
 
               <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password"/>
+                <input type="password" class="form-control" id="floatingPasswordConfirm" name="rePassword" placeholder="Confirm Password" value={rePassword} onChange={(e) => {
+							//console.log(e.target.value);
+							setRePassword(e.target.value);
+						}}/>
                 <label for="floatingPasswordConfirm">Confirm Password</label>
               </div>
 

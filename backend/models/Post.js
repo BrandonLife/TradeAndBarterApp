@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
-const Profile = require('./Profile')
 const PostsSchema = new mongoose.Schema({
     name: {
+        type: String,
+        required: true,
+    },
+    title: {
         type: String,
         required: true,
     },
@@ -15,7 +18,7 @@ const PostsSchema = new mongoose.Schema({
         required: true
     },
     creatorId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type:  mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
 

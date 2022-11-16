@@ -16,13 +16,17 @@ const ProductSchema = new mongoose.Schema({
         required: true,
         validate: validImage
     },
+    description:{
+        type: String,
+        required: true,
+    },
   
     price:{
         type: Number,
         required: true,
     },
     creatorId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type:  mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
 })

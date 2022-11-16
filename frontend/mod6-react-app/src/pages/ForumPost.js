@@ -1,5 +1,5 @@
 import "./Forum.css"
-export default function ForumPost(){
+export default function ForumPost(props){
 
 
     return (
@@ -8,11 +8,11 @@ export default function ForumPost(){
 <div class="card single_post">
                     <div class="body">
                         <div class="img-post">
-                            <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/FFB6C1/000000" alt=""/>
+                            <img class="d-block img-fluid" src={props.imageURL} alt=""/>
                         </div>
-                        <h3>Title</h3>
-                        <h4>Made By (author)</h4>
-                        <p>Comments</p>
+                        <h3>{props.title}</h3>
+                        <h4>Made by {props.name}</h4>
+                        <p>{props.comments}</p>
                     </div>
                     <div class="footer">
                         <div class="actions">
