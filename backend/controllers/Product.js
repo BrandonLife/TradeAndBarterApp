@@ -2,30 +2,30 @@ const models = require('../models')
 
 module.exports = {
     get: (req, res, next) => {
-        models.Post.find()
-            .then((posts) => res.send(posts))
+        models.Product.find()
+            .then((products) => res.send(products))
             .catch(next);
     },
-    specificPost:(req,res,next) =>{
+    specificProduct:(req,res,next) =>{
         const id = req.params.id;
-        models.Post.findById(id)
-            .then((post) => res.send(post))
+        models.Product.findById(id)
+            .then((product) => res.send(product))
             .catch(next);
     },
     post: (req, res, next) => {
+        console.log(req.body)
         const { description } = req.body;
         const { _id } = req.user;
 
         models.Post.create({ description, creatorId: _id })
-            .then((newPost) => {
+            .then((newProduct) => {
                 return Promise.all([
-                    models.User.updateOne({ _id }, { $push: { posts: newPost } }),
-                    models.Post.findOne({ _id: newPost._id })
+                    models.User.updateOne({ _id }, { $push: { products: newProduct } }),
+                    models.Product.findOne({ _id: newProduct._id })
                 ]);
             })
-            .then(([modifiedObj, PostObj]) => {
-                console.log(PostObj)
-                res.send(PostObj);
+            .then(([modifiedObj, ProductObj]) => {
+                res.send(ProductObj);
             })
             .catch(next);
     },
@@ -33,15 +33,15 @@ module.exports = {
     put: (req, res, next) => {
         const id = req.params.id;
         const { description } = req.body;
-        models.Post.updateOne({ _id: id }, { description })
-            .then((updatedPost) => res.send(updatedPost))
+        models.Product.updateOne({ _id: id }, { description })
+            .then((updatedProduct) => res.send(updatedProduct))
             .catch(next)
     },
 
     delete: (req, res, next) => {
         const id = req.params.id;
         models.Post.deleteOne({ _id: id })
-            .then((removedPost) => res.send(removedPost))
+            .then((removedProduct) => res.send(removedProduct))
             .catch(next)
     }
 

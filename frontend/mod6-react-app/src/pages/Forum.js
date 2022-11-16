@@ -1,5 +1,6 @@
 import "./Forum.css"
-export default function Forum(){
+import ForumPost from "./ForumPost"
+export default function Forum(props){
 
 
     return (
@@ -9,54 +10,10 @@ export default function Forum(){
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12 left-box">
 
-                <div class="card single_post">
-                    <div class="body">
-                        <div class="img-post">
-                            <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/FFB6C1/000000" alt="First slide"/>
-                        </div>
-                        <h3>Title</h3>
-                        <h4>Made By (author)</h4>
-                        <p>Comments</p>
-                    </div>
-                    <div class="footer">
-                        <div class="actions">
-                            <a href="javascript:void(0);" class="btn btn-outline-secondary">See full article</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card single_post">
-                    <div class="body">
-                        <div class="img-post">
-                            <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/FFB6C1/000000" alt=""/>
-                        </div>
-                        <h3>Title</h3>
-                        <h4>Made By (author)</h4>
-                        <p>Comments</p>
-                    </div>
-                    <div class="footer">
-                        <div class="actions">
-                            <a href="javascript:void(0);" class="btn btn-outline-secondary">See full article</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card single_post">
-                    <div class="body">
-                        <div class="img-post">
-                            <img class="d-block img-fluid" src="https://via.placeholder.com/800x280/FFB6C1/000000" alt=""/>
-                        </div>
-                        <h3>Title</h3>
-                        <h4>Made By (author)</h4>
-                        <p>Comments</p>
-                    </div>
-                    <div class="footer">
-                        <div class="actions">
-                            <a href="javascript:void(0);" class="btn btn-outline-secondary">See full article</a>
-                        </div>
-                    </div>
-                </div>
-
+               <ForumPost />
+               <div>
+                {props.children}
+               </div>
                                         
                 <ul class="pagination pagination-primary">
                     <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
