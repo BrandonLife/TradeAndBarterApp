@@ -1,7 +1,10 @@
 import "./products.css"
 import Card from "../Components/Card"
-export default function EditProduct(){
-
+import { Navigate } from "react-router-dom";
+export default function EditProduct(props){
+    if(!props.loggedIn){
+        return <Navigate to="/User/login" replace={true} />;
+    }
     return (
         <div className="wrapper">
              <h1>Edit Product</h1>

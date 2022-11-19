@@ -1,35 +1,58 @@
 import "./Login.css"
 import {UserLogin} from "../services"
 import { useState } from "react"
+import {Navigate} from "react-router-dom"
+import {useCookies} from "react-cookie"
 
-export default function Login(){
-  const [email, setEmail] =useState('')
+export default function Login(props){
   const [password, setPassword] =useState('')
   const [username, setUsername] = useState("");
+  // const [loggedIn, setLoggedIn] = useState('');
+  const [cookies, setCookie] = useCookies(['User']);
+ 
+  if(props.loggedIn){
+    return <Navigate to="/" replace={true}/>
+  }
  function loginHandler(event){
 event.preventDefault();
 let incorrectInput = false
-if(email.length === 0){
-  //error
-  console.log("There is no email")
-  incorrectInput= true
-}
+// if(email.length === 0){
+//   //error
+//   console.log("There is no email")
+//   incorrectInput= true
+// }
 if(password.length === 0){
   //error
   console.log("There is no password")
+  incorrectInput= true
+}
+if(username.length === 0){
+  //error
+  console.log("No username found")
   incorrectInput= true
 }
 
 if(!incorrectInput){
   UserLogin({
     username: username,
-    email: email,
     password: password
+  }).then((data)=>{
+    console.log(data)
+  props.setCookie(data.cookieName,data.token,{
+      path: "/",
+			maxAge: 60 * 60 * 1000,
+    })
+   
+    props.setLoggedIn(true);
+		props.setUserId(data.user._id)
+   
   })
+}else{
+  console.log("There was an error, please try again.")
 }
 }
     return (
-<>
+
 <body class="body-container1">
 <div class="container">
     <div class="row">
@@ -39,10 +62,10 @@ if(!incorrectInput){
             <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
             <form onSubmit={loginHandler}>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" value={username || email} id="floatingInput" placeholder="Username" onChange={(e)=>{
-                  setUsername(e.target.value) || setEmail(e.target.value)
+                <input type="text" class="form-control" value={username} id="floatingInput" placeholder="Username" onChange={(e)=>{
+                  setUsername(e.target.value)
                 }}/>
-                <label for="floatingInput">Enter Username or Email</label>
+                <label for="floatingInput">Username</label>
               </div>
               <div class="form-floating mb-3">
                 <input type="password" class="form-control" value={password} id="floatingPassword" placeholder="Password" onChange={(e)=>{
@@ -68,9 +91,7 @@ if(!incorrectInput){
     </div>
   </div>
 </body>
-</>
 
-
-    )
+)
 
 }

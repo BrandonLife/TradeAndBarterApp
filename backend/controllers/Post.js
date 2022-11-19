@@ -1,9 +1,12 @@
+const config = require('../config/config');
 const models = require('../models')
+const Utilities = require('../Utilities')
 
 module.exports = {
     get: (req, res, next) => {
         models.Post.find()
-            .then((posts) => res.send(posts))
+            .then((posts) =>{
+            return res.send(posts)})
             .catch(next);
     },
     specificPost:(req,res,next) =>{
@@ -12,28 +15,21 @@ module.exports = {
             .then((post) => res.send(post))
             .catch(next);
     },
-    post: (req, res, next) => {
-        const { description } = req.body;
-        const { _id } = req.user;
+    post: {
+        createPost: (req, res, next) => {
+            const { name, title, imageURL, comments } = req.body;
 
-        models.Post.create({ description, creatorId: _id })
-            .then((newPost) => {
-                return Promise.all([
-                    models.User.updateOne({ _id }, { $push: { posts: newPost } }),
-                    models.Post.findOne({ _id: newPost._id })
-                ]);
-            })
-            .then(([modifiedObj, PostObj]) => {
-                console.log(PostObj)
-                res.send(PostObj);
-            })
-            .catch(next);
+            models.Post.create({ name, title, imageURL, comments})
+                .then((createdPost) => res.send(createdPost))
+                .catch(next)
+      },
+      
     },
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { description } = req.body;
-        models.Post.updateOne({ _id: id }, { description })
+        const { title } = req.body;
+        models.Post.updateOne({ _id: id }, { title })
             .then((updatedPost) => res.send(updatedPost))
             .catch(next)
     },

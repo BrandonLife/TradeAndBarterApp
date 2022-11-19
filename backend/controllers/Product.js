@@ -12,22 +12,15 @@ module.exports = {
             .then((product) => res.send(product))
             .catch(next);
     },
-    post: (req, res, next) => {
-        console.log(req.body)
-        const { description } = req.body;
-        const { _id } = req.user;
+    post: {
+        createProduct: (req, res, next) => {
+            const { productType, productName, imageURL, description, price } = req.body;
 
-        models.Post.create({ description, creatorId: _id })
-            .then((newProduct) => {
-                return Promise.all([
-                    models.User.updateOne({ _id }, { $push: { products: newProduct } }),
-                    models.Product.findOne({ _id: newProduct._id })
-                ]);
-            })
-            .then(([modifiedObj, ProductObj]) => {
-                res.send(ProductObj);
-            })
-            .catch(next);
+            models.Product.create({productType, productName, imageURL, description, price})
+                .then((createdProduct) => res.send(createdProduct))
+                .catch(next)
+      },
+            
     },
 
     put: (req, res, next) => {
