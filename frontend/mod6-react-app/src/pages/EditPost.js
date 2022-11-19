@@ -1,7 +1,10 @@
 import "./Forum.css"
-export default function EditPost(){
+import { Navigate } from "react-router-dom";
+export default function EditPost(props){
 
-
+    if(!props.loggedIn){
+        return <Navigate to="/User/login" replace={true} />;
+    }
     return (
 <>
 <h1>Edit Post</h1>

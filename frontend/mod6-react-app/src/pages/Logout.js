@@ -1,7 +1,9 @@
 import Home from "./Home";
-
-export default function Logout(){
-
+import { Navigate } from "react-router-dom";
+export default function Logout(props){
+    if(!props.loggedIn){
+        return <Navigate to="/User/login" replace={true} />;
+    }
 return (
     <>
      {<Home />}

@@ -13,6 +13,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Forum from './pages/Forum'
 import Logout from './pages/Logout'
+import CreatePost from './pages/CreatePost';
+import CreateProduct from "./pages/CreateProduct"
 
 import {Route, Routes} from "react-router-dom"
 import ForumPost from './pages/ForumPost';
@@ -20,37 +22,44 @@ import EditPost from './pages/EditPost';
 import DeletePost from './pages/DeletePost';
 import EditProduct from './pages/EditProduct';
 import DeleteProduct from './pages/DeleteProduct';
+import { useState } from 'react';
+import {useCookies} from "react-cookie"
 
 
 
 function App() {
+  const [cookies, setCookie, removeCookie] = useCookies(["x-auth-token"]);
+	const [userId, setUserId] = useState("");
+  const [loggedIn, setLoggedIn] = useState(cookies["x-auth-token"] ? true : false)
   return (
     <>
-    <Navigation />
+    <Navigation loggedIn = {loggedIn} removeCookie = {removeCookie} setLoggedIn = {setLoggedIn} setUserId = {setUserId} />
     <div>
    <Routes>
      <Route path="/" element={<Home />}/>
      <Route path="/About" element={<About />}/>
-     <Route path="/User/account" element={<Account />}/>
+     <Route path="/User/account" element={<Account loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId} />}/>
 
-     <Route path="/Products" element={<Products />}/>
-     <Route path="/Products/:id" element={<Product />}/>
-     <Route path="/Products/edit/product/:id" element={<EditProduct/>}/>
-     <Route path="/Products/delete/product/:id" element={<DeleteProduct />}/>
+     <Route path="/Products" element={<Products loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
+     <Route path="/Products/:id" element={<Product loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
+     <Route path="/Products/create/product" element={<CreateProduct loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId} />}/>
+     <Route path="/Products/edit/product/:id" element={<EditProduct loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
+     <Route path="/Products/delete/product/:id" element={<DeleteProduct loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
      
-     <Route path="/Forum" element={<Forum />}/>
-     <Route path="/Forum/Post/:id" element={<ForumPost />}/>
-     <Route path="/Forum/edit/Post/:id" element={<EditPost />}/>
-     <Route path="/Forum/delete/Post/:id" element={<DeletePost />}/>
+     <Route path="/Forum" element={<Forum loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
+     <Route path="/ForumPost/:id" element={<ForumPost loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
+     <Route path="/Forum/create/Post" element={<CreatePost loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId} />}/>
+     <Route path="/Forum/edit/Post/:id" element={<EditPost loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId} />}/>
+     <Route path="/Forum/delete/Post/:id" element={<DeletePost  loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
 
      <Route path="/Contact" element={<Contact />}/>
+    <Route path="/User/login" element={<Login loggedIn={loggedIn} setLoggedIn = {setLoggedIn} setCookie ={setCookie} setUserId = {setUserId} />}/>
+     <Route path="/User/register" element={<Register loggedIn ={loggedIn}/>}/>
+     <Route path="/User/logout" element={<Logout loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId} removeCookie = {removeCookie}/>}/>
      <Route path="*" element={<PageNotFound />}/>
-     <Route path="User/login" element={<Login />}/>
-     <Route path="/User/register" element={<Register/>}/>
-     <Route path="User/logout" element={<Logout/>}/>
      </Routes>   
     </div>
-  <Footer /> 
+  <Footer loggedIn = {loggedIn} removeCookie = {removeCookie} setLoggedIn = {setLoggedIn} setUserId = {setUserId} /> 
    
             
     

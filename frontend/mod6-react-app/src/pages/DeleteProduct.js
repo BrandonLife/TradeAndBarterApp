@@ -1,7 +1,10 @@
 import Card from "../Components/Card"
 import "./products.css"
-export default function DeleteProduct(){
-
+import { Navigate } from "react-router-dom";
+export default function DeleteProduct(props){
+    if(!props.loggedIn){
+        return <Navigate to="/User/login" replace={true} />;
+    }
     return (
         <div className="wrapper">
         <h1>Delete Product</h1>

@@ -7,16 +7,21 @@ module.exports = {
     models.User.find().then((users)=>res.send(users))
     .catch(next)
   },
+  getOne : (req, res, next)=>{
+    const id = req.params.id;
+    models.User.findById(id).then((users)=>res.send(users))
+    .catch(next)
+  },
   post: {
     register: (req, res, next) => {
-        const { username, password } = req.body;
-        models.User.create({ username, password })
+        const { username, password, email } = req.body;
+        models.User.create({ username, password, email })
             .then((createdUser) => res.send(createdUser))
             .catch(next)
   },
     login: (req, res, next) => {
     const { username, password } = req.body;
-    models.User.findOne({ username })
+    models.User.findOne({ username})
         .then((user) => Promise.all([user, user.matchPassword(password)]))
         .then(([user, match]) => {
             if (!match) { 
@@ -25,7 +30,7 @@ module.exports = {
             }
             //if the password does match
             const token = Utilities.jsonWebToken.createToken({ id: user._id });
-            res.cookie(config.authCookieName, token).send(user);
+            res.cookie(config.authCookieName, token).send({user, token, cookieName:config.authCookieName});
         })
         .catch(next);
 },

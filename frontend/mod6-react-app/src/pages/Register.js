@@ -1,13 +1,62 @@
 import { useState } from "react"
 import "./Register.css"
-export default function Register(){
+import {UserRegister} from "../services"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+
+export default function Register(props){
   const [email, setEmail] =useState('')
   const [password, setPassword] =useState('')
   const [username, setUsername] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const Navigate = useNavigate()
+  function registerHandler(event) {
+		event.preventDefault();
+		let incorrectInput = false;
+		if(username.length === 0){
+			incorrectInput =true;
+			console.log("Please type in username");
+		}
+		if(password.length === 0){
+			incorrectInput =true;
+			console.log("Please type in password");
+		}
+    if(email.length === 0){
+			incorrectInput =true;
+			console.log("Please enter email");
+		}
+		if(password !== rePassword){
+			incorrectInput =true;
+			console.log("Passwords must match");
+		}
+		if (!incorrectInput) {
+			UserRegister({
+				username,
+        email,
+				password,
+        rePassword
+        
+			}).then((data) => {
+				console.log(data);
+				// if(data.id){
+				Navigate("/")
+				// }else{
+				// 	console.log("user creation was not successful");
+				// }
+			});
+		} else {
+			console.log("There was an error, please try again.");
+		}
+	}
+	useEffect(()=>{
+		if (props.loggedIn) {
+			return Navigate("/");
+		}
+	})
+
 
     return (
-<>
+
 <div className="body-container">
 <div class="container">
     <div class="row">
@@ -18,10 +67,10 @@ export default function Register(){
           </div>
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-5">Register</h5>
-            <form>
+            <form onSubmit={registerHandler}>
 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInputUsername" name="username" placeholder="myusername" value={username} required autofocus onChange={(e) => {
+                <input type="text" class="form-control" id="floatingInputUsername" name="username" placeholder="username" value={username} required autofocus onChange={(e) => {
 							//console.log(e.target.value);
 							setUsername(e.target.value);
 						}} />
@@ -35,8 +84,6 @@ export default function Register(){
 						}}/>
                 <label for="floatingInputEmail">Email address</label>
               </div>
-
-              <hr/>
 
               <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" value={password} onChange={(e) => {
@@ -67,10 +114,8 @@ export default function Register(){
   </div>
   </div>
 
-</>
 
-
-    )
+    );
 
 
 

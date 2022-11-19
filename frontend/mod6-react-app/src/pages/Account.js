@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Navigate } from "react-router-dom"
 import "./Account.css"
 export default function Account(props){
 const [email, setEmail] = useState('')
@@ -9,6 +10,9 @@ const [phoneNumber, setPhoneNumber] = useState('')
 const [occupation, setOccupation] = useState('')
 const [location, setLocation] = useState('')
 const [username, setUsername] = useState('')
+if(!props.loggedIn){
+    return <Navigate to="/User/login" replace={true} />;
+}
 return (
     <>
 <div class="container-xl px-4 mt-4">

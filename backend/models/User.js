@@ -1,24 +1,21 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt')
 
 const Posts = require('./Post')
 
 const UserSchema = new mongoose.Schema({
     firstName:{
         type: String,
-        required: true,
-        
-    },
+        },
     lastName:{
         type: String,
-        required: true,
+       
     },
    imageURL:{
         type: String,
-        required: true,
     },
     phoneNumber:{
         type: String,
-        required: true,
     },
    occupation:{
         type: String,
@@ -59,7 +56,7 @@ UserSchema.methods = {
     }
 
 };
-
+let saltRounds = 10
 UserSchema.pre('save', function (next) {
     if (this.isModified('password')) {
         bcrypt.genSalt(saltRounds, (err, salt) => {

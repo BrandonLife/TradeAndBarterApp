@@ -2,16 +2,18 @@ const controllers = require('../controllers/');
 const express = require('express')
 const router = express.Router()
 
-router.get('/', controllers.user.get);
+router.get('/', controllers.User.get);
 
-router.post('/register', controllers.user.post.register);
+router.get('/:id', controllers.User.getOne);
 
-router.post('/login', controllers.user.post.login);
+router.post('/register', controllers.User.post.register);
 
-router.post('/logout', controllers.user.post.logout);
+router.post('/login', controllers.User.post.login);
 
-router.put('/:id', controllers.user.put);
+router.post('/logout', controllers.User.post.logout);
 
-router.delete('/:id', controllers.user.delete);
+router.put('/:id', controllers.User.put);
+
+router.delete('/:id', controllers.User.delete);
 
 module.exports = router;

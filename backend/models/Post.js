@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const PostsSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -21,7 +21,6 @@ const PostsSchema = new mongoose.Schema({
         type:  mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-
 });
 
 function validImage(val) {
