@@ -1,33 +1,30 @@
 import "./Forum.css"
-import {addPost, createPosts, getPosts, getUser } from "../services"
+import {addPost, createPosts, getOnePost, getPosts, getUser } from "../services"
 import { Navigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 export default function Forum(props){
+    console.log(props)
     const [postData, setPostData] = useState();
     const [posts, setPosts] = useState([])
     
     function runFetch(){
         getPosts().then((data) => {
-           
 				let newData = JSON.stringify(data);
 				let oldData = JSON.stringify(postData);
 				if (oldData !== newData) {
 					setPosts(data);
+    
 				}
                 
 	    }, []);
     }
+   
     if(!props.loggedIn){
         return <Navigate to="/User/login" replace={true} />;
     }
     // let loadArray=[runFetch]
-    function loadPosts(event){
-        // for(let i=0; i<= loadArray.length; i++){
-        //     runFetch()
-        //     break;
-        // }
-        // console.log('running')
-        let loadPostBtn = document.getElementById('load-post')
+    function loadPosts(){
+    let loadPostBtn = document.getElementById('load-post')
         loadPostBtn.addEventListener(('click'), ()=>{
             runFetch()
         })
@@ -36,7 +33,7 @@ export default function Forum(props){
 	const postsArray = posts.map((postData,index) => {
         
 		return (
-            <div class="card single_post">
+            <div class="card single_post" key={postData._id}>
                 <div class="body">
                     <div class="img-post">
                         <img class="d-block img-fluid" src={postData.imageURL} alt=""/>
@@ -49,7 +46,7 @@ export default function Forum(props){
                     <div class="actions">
                         <a class="btn btn-outline-secondary">See full article</a>
                     </div>
-                    
+                    <button><Link to={`/ForumPost/${postData._id}`}>See this post</Link></button>
                 </div>
         </div>
 

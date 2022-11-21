@@ -6,6 +6,11 @@ import addPost from "./addPost";
 import createNewPost from "./createNewPost";
 import createNewProduct from "./createNewProduct";
 import getProducts from "./getAllProducts";
+import getUserProduct from './getUserProduct'
+import getUserPost from "./getUserProduct";
+import DeletePostData from "./DeletePost";
+import DeleteProductData from "./DeleteProduct";
+import getOnePost from "./getOnePost";
 
 
 export{
@@ -16,5 +21,10 @@ export{
     addPost,
     createNewPost,
     createNewProduct,
-    getProducts
+    getProducts,
+    getUserProduct,
+    getUserPost,
+    DeletePostData,
+    DeleteProductData,
+    getOnePost
 }

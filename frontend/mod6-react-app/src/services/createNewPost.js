@@ -14,7 +14,6 @@ headers: {
 
 export default function createNewPost(data){
     options.body = JSON.stringify(data)
-    console.log(options);
     return fetch(url,options)
             .then(response => response.json())
             .catch(error=>{

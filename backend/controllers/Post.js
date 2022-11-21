@@ -11,7 +11,7 @@ module.exports = {
     },
     specificPost:(req,res,next) =>{
         const id = req.params.id;
-        models.Post.findById(id)
+        models.Post.findOne({ _id: id })
             .then((post) => res.send(post))
             .catch(next);
     },
@@ -35,7 +35,8 @@ module.exports = {
     },
 
     delete: (req, res, next) => {
-        const id = req.params.id;
+        let id = req.params.id;
+        console.log(req)
         models.Post.deleteOne({ _id: id })
             .then((removedPost) => res.send(removedPost))
             .catch(next)

@@ -8,7 +8,7 @@ module.exports = {
     },
     specificProduct:(req,res,next) =>{
         const id = req.params.id;
-        models.Product.findById(id)
+        models.Product.findOne({ _id: id })
             .then((product) => res.send(product))
             .catch(next);
     },
@@ -33,7 +33,7 @@ module.exports = {
 
     delete: (req, res, next) => {
         const id = req.params.id;
-        models.Post.deleteOne({ _id: id })
+        models.Product.deleteOne({ _id: id })
             .then((removedProduct) => res.send(removedProduct))
             .catch(next)
     }

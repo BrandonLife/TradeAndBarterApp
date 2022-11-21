@@ -1,10 +1,11 @@
-const url = "http://localhost:9999/api/Post/";
+const url = "http://localhost:9999/api/Post/specificPost/:id";
 let options = {
-    method:"Get",
+    method:"GET",
    
 }
 
-export default function getPosts(){
+export default function getOnePost(data){
+    console.log(data, 'getOnePost data')
     return fetch(url,options)
             .then(response => {
                 console.log(response)

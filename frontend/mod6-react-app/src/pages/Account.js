@@ -1,6 +1,10 @@
 import { useState } from "react"
 import { Navigate } from "react-router-dom"
+import {getUser, getUserPost, getUserProduct} from "../services"
+import ForumPost from "./ForumPost"
 import "./Account.css"
+import Product from "./Product"
+import { useEffect } from "react"
 export default function Account(props){
 const [email, setEmail] = useState('')
 const [imageURL, setImageURL] = useState('')
@@ -10,9 +14,114 @@ const [phoneNumber, setPhoneNumber] = useState('')
 const [occupation, setOccupation] = useState('')
 const [location, setLocation] = useState('')
 const [username, setUsername] = useState('')
+const [posts, setPosts] = useState([])
+const [products, setProducts] = useState([])
+const [postNum, setPostNum] = useState(0);
+const [productNum, setProductNum] = useState(0);
+function runPostFetch() {
+    getUserPost({
+        id: props.userId,
+    }).then((data) => {
+        console.log(data);
+        getUser({
+            id: props.userId,
+        }).then((user) => {
+            console.log(data);
+            setPostNum(data.length);
+            setUsername(user.username);
+            setEmail(user.email)
+            setImageURL(user.imageURL)
+            setFirstName(user.firstName)
+            setLastName(user.lastName)
+            setPhoneNumber(user.phoneNumber)
+            setLocation(user.location)
+            setOccupation(user.occupation)
+            data = data.reverse().slice(0, 3);
+            data = data.map(item=>{
+                item.creatorId = user.username;
+                return item;
+            });
+
+            console.log(data);
+            let newData = JSON.stringify(data);
+            let oldData = JSON.stringify(posts);
+            if (oldData !== newData) {
+                setPosts(data);
+            }
+        });
+    });
+}
+function runProductFetch() {
+    getUserProduct({
+        id: props.userId,
+    }).then((data) => {
+        console.log(data);
+        getUser({
+            id: props.userId,
+        }).then((user) => {
+            console.log(data);
+            setProductNum(data.length);
+            setUsername(user.username);
+            setEmail(user.email)
+            setImageURL(user.imageURL)
+            setFirstName(user.firstName)
+            setLastName(user.lastName)
+            setPhoneNumber(user.phoneNumber)
+            setLocation(user.location)
+            setOccupation(user.occupation)
+            data = data.reverse()
+            data=data.slice(0, 3);
+            data = data.map(item=>{
+                item.creatorId = user.username;
+                return item;
+            });
+
+            console.log(data);
+            let newData = JSON.stringify(data);
+            let oldData = JSON.stringify(products);
+            if (oldData !== newData) {
+                setProducts(data);
+            }
+        });
+    });
+}
+
+
+function runFetch(data){
+    console.log("searched");
+    runPostFetch(data);
+    runProductFetch(data);
+}
 if(!props.loggedIn){
     return <Navigate to="/User/login" replace={true} />;
 }
+
+const postsArray = posts.map((post,index) => {
+    return (
+        <ForumPost
+            key={post._id}
+            index={index+1}
+            name={post.name}
+            title={post.title}
+            imageURL={post.imageURL}
+            comments={post.comments}
+            creatorId={post.creatorId}
+        />
+    );
+});
+const productsArray = products.map((product,index) => {
+    return (
+        <Product
+            key={product._id}
+            index={index+1}
+            title={product.title}
+            imageURL={product.imageURL}
+            description ={product.description}
+            creatorId={product.creatorId}
+        />
+    );
+});
+
 return (
     <>
 <div class="container-xl px-4 mt-4">
@@ -32,7 +141,7 @@ return (
                     {/* <!-- Profile picture help block--> */}
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     {/* <!-- Profile picture upload button--> */}
-                    <button class="btn btn-primary" type="button">Upload new image</button>
+                    <button class="btn btn-primary" type="file">Upload new image</button>
                 </div>
             </div>
         </div>
@@ -41,7 +150,7 @@ return (
             <div class="card mb-4">
                 <div class="card-header">Account Details</div>
                 <div class="card-body">
-                    <form>
+                    <form onSubmit={runFetch()} >
                         {/* <!-- Form Group (username)--> */}
                         <div class="mb-3">
                             <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
@@ -86,14 +195,40 @@ return (
                                 <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value={phoneNumber}/>
                             </div>
                         </div>
+                        <div class="row gx-3 mb-3">
+                            {/* <!-- Form Group (phone number)--> */}
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">ImageURL</label>
+                                <input class="form-control" id="inputPhone" type="text" placeholder="imageURL" value={imageURL}/>
+                            </div>
+                        </div>
                         {/* <!-- Save changes button--> */}
-                        <button class="btn btn-primary" type="button">Save changes</button>
+                        <button class="btn btn-primary" type="submit">Save changes</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<hr />
+                <p>
+					<span>Posts: </span>
+					{postNum}
+				</p>
+            <div>
+				<h2>Your 3 most recent posts</h2>
+				{postsArray}
+			</div>
+            <p>
+					<span>Products: </span>
+					{productNum}
+				</p>
+            <div>
+				<h2>Your 3 most recent products</h2>
+				{productsArray}
+			</div>
+
+
 </>
 
 )
