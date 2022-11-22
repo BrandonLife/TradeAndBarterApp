@@ -1,4 +1,4 @@
-const url = "http://localhost:9999/api/Products";
+const url = "http://localhost:9999/api/Products/";
 let options = {
     method:"Get",
    

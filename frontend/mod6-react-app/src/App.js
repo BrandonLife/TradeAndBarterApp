@@ -19,9 +19,7 @@ import CreateProduct from "./pages/CreateProduct"
 import {Route, Routes} from "react-router-dom"
 import ForumPost from './pages/ForumPost';
 import EditPost from './pages/EditPost';
-import DeletePost from './pages/DeletePost';
 import EditProduct from './pages/EditProduct';
-import DeleteProduct from './pages/DeleteProduct';
 import { useState } from 'react';
 import {useCookies} from "react-cookie"
 
@@ -44,13 +42,12 @@ function App() {
      <Route path="/Products/:id" element={<Product loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
      <Route path="/Products/create/product" element={<CreateProduct loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId} />}/>
      <Route path="/Products/edit/product/:id" element={<EditProduct loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
-     <Route path="/Products/delete/product/:id" element={<DeleteProduct loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
      
      <Route path="/Forum" element={<Forum loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
      <Route path="/ForumPost/:id" element={<ForumPost loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
      <Route path="/Forum/create/Post" element={<CreatePost loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId} />}/>
      <Route path="/Forum/edit/Post/:id" element={<EditPost loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId} />}/>
-     <Route path="/Forum/delete/Post/:id" element={<DeletePost  loggedIn = {loggedIn} cookie={cookies["x-auth-token"]} userId={userId}/>}/>
+     
 
      <Route path="/Contact" element={<Contact />}/>
     <Route path="/User/login" element={<Login loggedIn={loggedIn} setLoggedIn = {setLoggedIn} setCookie ={setCookie} setUserId = {setUserId} />}/>

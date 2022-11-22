@@ -1,5 +1,5 @@
 import './CreatePost.css'
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import {createNewProduct} from '../services';
 
@@ -9,6 +9,7 @@ export default function CreatePost(props){
 	const [productName, setProductName] = useState('')
 	const [description, setDescription] = useState('')
     const [price, setPrice] = useState(0)
+	const Navigate = useNavigate()
 
 		console.log(productName, imageURL)
 		
@@ -32,6 +33,7 @@ export default function CreatePost(props){
 		const newData = {...data}
 		setData(newData)
 		createNewProduct(newData)
+		Navigate('/Products')
 	}
 
 

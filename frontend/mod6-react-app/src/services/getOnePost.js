@@ -1,13 +1,15 @@
-const url = "http://localhost:9999/api/Post/";
+
 let options = {
-    method:"Get",
+    method:"GET",
    
 }
 
-export default function getPosts(){
+export default function getOnePost(data){
+    console.log(data, 'getOnePost data')
+    const url = "http://localhost:9999/api/Post/specificPost/"+ data
+    console.log(url)
     return fetch(url,options)
             .then(response => {
-                console.log(response)
               return response.json()
             })
             .catch(error=>{

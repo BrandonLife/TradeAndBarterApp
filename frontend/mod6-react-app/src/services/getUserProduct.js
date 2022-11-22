@@ -1,4 +1,4 @@
-const url = "http://localhost:9999/api/Post/specificPost";
+const url = "http://localhost:9999/api/Products/specificProduct";
 let options = {
     method:"POST",
     headers: {
@@ -7,7 +7,7 @@ let options = {
    
 }
 
-export default function getUserPost(data){
+export default function getUserProduct(data){
     //console.log(data);
     options.body = JSON.stringify(data)
     return fetch(url,options)

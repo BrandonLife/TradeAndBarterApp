@@ -36,6 +36,7 @@ export default function Products(props){
             <h2 className="card_title">{productData.title}</h2>
             <p className="card_description">{productData.description}</p>
             <button className="card_btn">Wanna Trade?</button>
+            <button><Link to={`/Products/${productData._id}`}>See Product</Link></button>
             </div>
             
 		);

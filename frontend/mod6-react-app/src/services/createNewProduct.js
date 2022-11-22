@@ -13,9 +13,7 @@ headers: {
 }
 
 export default function createNewProduct(data){
-    console.log(data)
     options.body = JSON.stringify(data)
-    console.log(options);
     return fetch(url,options)
             .then(response => response.json())
             .catch(error=>{

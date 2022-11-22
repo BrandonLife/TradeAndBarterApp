@@ -11,7 +11,7 @@ module.exports = {
     },
     specificPost:(req,res,next) =>{
         const id = req.params.id;
-        models.Post.findById(id)
+        models.Post.findOne({ _id: id })
             .then((post) => res.send(post))
             .catch(next);
     },
@@ -28,15 +28,17 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { title } = req.body;
-        models.Post.updateOne({ _id: id }, { title })
+        const { name, title, imageURL, comments } = req.body
+        console.log(req, 'req object for Posts')
+        models.Post.updateOne({ _id: id, title:title, name:name, imageURL:imageURL, comments: comments })
             .then((updatedPost) => res.send(updatedPost))
             .catch(next)
     },
 
     delete: (req, res, next) => {
-        const id = req.params.id;
-        models.Post.deleteOne({ _id: id })
+        let id = req.params.id;
+        console.log(req)
+        models.Post.deleteOne({ _id: id})
             .then((removedPost) => res.send(removedPost))
             .catch(next)
     }

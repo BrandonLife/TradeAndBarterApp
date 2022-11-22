@@ -1,19 +1,67 @@
-import Card from "../Components/Card"
+
 import "./products.css"
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useEffect , useState} from "react";
+import { Link } from "react-router-dom";
+import { DeleteProductData, getProducts} from "../services";
 export default function Product(props){
+    console.log(props)
+    const [products, setProducts] = useState([])
+    const [productUrlId, setProductUrlId] = useState('')
+    const Navigate = useNavigate()
+    let productId=''
+    function runFetch() {
+	let pathname = window.location.pathname
+    let pathNameArray = pathname.split('/')
+    productId = pathNameArray[2]
+    setProductUrlId(productId)
+    getProducts().then((data) => {
+        let newData = JSON.stringify(data);
+        let oldData = JSON.stringify(products);
+        if (oldData !== newData) {
+            setProducts(data);
+
+        }
+        
+}, []);
+    
+}
+ 
+   function DeleteHandler(){
+    DeleteProductData(productUrlId)
+    Navigate('/Products')
+    }
+	useEffect(() => {
+		console.log("searched");
+		runFetch();
+	}, []);
+
+
     if(!props.loggedIn){
         return <Navigate to="/User/login" replace={true} />;
     }
-    return (
-        <div className="wrapper">
-<Card 
-        img="https://images.pexels.com/photos/2030476/pexels-photo-2030476.jpeg?auto=compress&cs=tinysrgb&w=600" 
-            title="Sewing Machine"
-            description="This amazing sewing machine has been my sidekick since I opened up my tailoring shop in 2013. If you are good to your tools, your tools will be good to you, my father always told me, and so with a passion I have kept this sewing machine in the best condition.  I was recently gifted an industrial capacity sewing machine and feel it's time to pass on my old friend to a new home.  Wanna trade? ~Value: $500 ~Interested in kitchen equipment, precious metals, rare treasures" />
-        </div>
+
+    for(let product of products){
+        if(product._id === productUrlId){
+            return (
+                <div>
         
-    )
+                
+                <div className="wrapper">
+        <div className="card">
+                    <img className="card_image" src={product.imageURL} alt="This is a dynamic pic"></img>
+                    <h2 className="card_title">{product.title}</h2>
+                    <p className="card_description">{product.description}</p>
+                    <button className="card_btn">Wanna Trade?</button>
+                    <button onClick={DeleteHandler}><Link>Delete Product</Link></button>
+                    <button><Link to={`/Products/edit/product/${productUrlId}`}>Edit Product</Link></button>
+                    </div>
+                </div>
+                </div>
+            )
+           
+        }
+    }
    
 
 }

@@ -8,7 +8,7 @@ module.exports = {
     },
     specificProduct:(req,res,next) =>{
         const id = req.params.id;
-        models.Product.findById(id)
+        models.Product.findOne({ _id: id })
             .then((product) => res.send(product))
             .catch(next);
     },
@@ -25,15 +25,17 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { description } = req.body;
-        models.Product.updateOne({ _id: id }, { description })
+        const { productType, productName, imageURL, description, price } = req.body;
+        console.log(req, 'req obj for Products')
+        console.log(res, 'res obj products')
+        models.Product.updateOne({ _id: id, productType: productType, productName:productName, imageURL: imageURL, description: description, price:price })
             .then((updatedProduct) => res.send(updatedProduct))
             .catch(next)
     },
 
     delete: (req, res, next) => {
         const id = req.params.id;
-        models.Post.deleteOne({ _id: id })
+        models.Product.deleteOne({ _id: id })
             .then((removedProduct) => res.send(removedProduct))
             .catch(next)
     }
