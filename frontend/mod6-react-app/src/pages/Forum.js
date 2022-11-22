@@ -19,17 +19,19 @@ export default function Forum(props){
 	    }, []);
     }
    
-    if(!props.loggedIn){
-        return <Navigate to="/User/login" replace={true} />;
-    }
-    // let loadArray=[runFetch]
+   
     function loadPosts(){
     let loadPostBtn = document.getElementById('load-post')
         loadPostBtn.addEventListener(('click'), ()=>{
             runFetch()
         })
     }
-  
+    useEffect(()=>{
+        runFetch()
+    },[])
+    if(!props.loggedIn){
+        return <Navigate to="/User/login" replace={true} />;
+    }
 	const postsArray = posts.map((postData,index) => {
         
 		return (

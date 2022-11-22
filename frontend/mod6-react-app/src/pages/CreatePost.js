@@ -1,13 +1,15 @@
 import './CreatePost.css'
-import { Navigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { Navigate, useNavigate } from "react-router-dom";
+import { useState } from 'react';
 import {createNewPost} from '../services';
+
 
 export default function CreatePost(props){
 	const [name, setName] = useState('')
 	const [imageURL, setImageURL] = useState('')
 	const [title, setTitle] = useState('')
 	const [comments, setComments] = useState('')
+	const Navigate= useNavigate()
 		
 		
 	const [data, setData] = useState({
@@ -28,6 +30,7 @@ export default function CreatePost(props){
 		const newData = {...data}
 		setData(newData)
 		createNewPost(newData)
+		Navigate('/Forum')
 	}
 
 

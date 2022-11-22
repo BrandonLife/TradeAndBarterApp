@@ -11,7 +11,9 @@ import getUserPost from "./getUserProduct";
 import DeletePostData from "./DeletePost";
 import DeleteProductData from "./DeleteProduct";
 import getOnePost from "./getOnePost";
-
+import getOneProduct from "./getOneProduct";
+import EditPostData from "./EditPost";
+import EditProductData from "./EditProduct";
 
 export{
     UserLogin,
@@ -26,5 +28,8 @@ export{
     getUserPost,
     DeletePostData,
     DeleteProductData,
-    getOnePost
+    getOnePost,
+    getOneProduct,
+    EditPostData,
+    EditProductData
 }
