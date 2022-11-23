@@ -3,7 +3,6 @@ import {addPost, createPosts, getOnePost, getPosts, getUser } from "../services"
 import { Navigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 export default function Forum(props){
-    console.log(props)
     const [postData, setPostData] = useState();
     const [posts, setPosts] = useState([])
     
@@ -20,12 +19,12 @@ export default function Forum(props){
     }
    
    
-    function loadPosts(){
-    let loadPostBtn = document.getElementById('load-post')
-        loadPostBtn.addEventListener(('click'), ()=>{
-            runFetch()
-        })
-    }
+    // function loadPosts(){
+    // let loadPostBtn = document.getElementById('load-post')
+    //     loadPostBtn.addEventListener(('click'), ()=>{
+    //         runFetch()
+    //     })
+    // }
     useEffect(()=>{
         runFetch()
     },[])
@@ -66,7 +65,7 @@ export default function Forum(props){
             <div class="col-lg-8 col-md-12 left-box">
               <div>
                {postsArray}
-               <button onClick={loadPosts} id="load-post">Load Posts</button>
+               {/* <button onClick={loadPosts} id="load-post">Load Posts</button> */}
                <button><Link to="/Forum/create/Post">Create new Post</Link></button>
               </div>
                 
@@ -107,7 +106,7 @@ export default function Forum(props){
             <div class="col-lg-8 col-md-12 left-box">
             <div>
                <p>Sorry no posts to display</p>
-               <button onClick={loadPosts} id="load-post">Load Posts</button>
+               {/* <button onClick={loadPosts} id="load-post">Load Posts</button> */}
                 <button><Link to="/Forum/create/Post">Create Post</Link></button>
               </div>
          
@@ -138,5 +137,6 @@ export default function Forum(props){
 </div>
 // </body>
  )
-                }    
+                }
+                 
 }

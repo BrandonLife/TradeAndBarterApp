@@ -43,7 +43,6 @@ if(!props.loggedIn){
         return <Navigate to="/User/login" replace={true} />;
     }
 
-    console.log(posts)
 //need to find out why Navigate is not taking the user back to the Forum Page
     for(let post of posts){
         if(post._id === postUrlId){

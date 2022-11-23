@@ -11,6 +11,7 @@ export default function EditProduct(props){
 	const [id, setId] = useState({id:''})
 	const [products, setProducts] = useState([])
 	const Navigate = useNavigate()
+	let newData={}
 
     
    
@@ -34,10 +35,20 @@ export default function EditProduct(props){
 		console.log("searched");
 		runFetch();
 	}, []);
-	
+	newData.productName = productName
+	newData.productType = productType
+	newData.imageURL = imageURL
+	newData.description= description
+	newData.price = price
+	newData._id = id.id 
 	function EditProductHandler(event){
 		event.preventDefault()
-		EditProductData(id.id)
+		for(let product of products){
+			if(product._id === id.id){
+				EditProductData(newData)
+			}
+		}
+		
 		Navigate('/Products')
 		
 	}

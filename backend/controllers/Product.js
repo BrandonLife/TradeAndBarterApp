@@ -28,7 +28,7 @@ module.exports = {
         const { productType, productName, imageURL, description, price } = req.body;
         console.log(req, 'req obj for Products')
         console.log(res, 'res obj products')
-        models.Product.updateOne({ _id: id, productType: productType, productName:productName, imageURL: imageURL, description: description, price:price })
+        models.Product.updateOne({ _id: id, productType: productType, productName: productName, imageURL: imageURL, description: description, price: price })
             .then((updatedProduct) => res.send(updatedProduct))
             .catch(next)
     },

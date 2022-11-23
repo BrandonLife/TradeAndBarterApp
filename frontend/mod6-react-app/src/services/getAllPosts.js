@@ -7,7 +7,6 @@ let options = {
 export default function getPosts(){
     return fetch(url,options)
             .then(response => {
-                console.log(response)
               return response.json()
             })
             .catch(error=>{
