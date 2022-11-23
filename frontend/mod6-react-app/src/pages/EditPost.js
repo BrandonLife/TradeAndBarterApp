@@ -10,7 +10,7 @@ export default function EditPost(props){
 	const [id, setId] = useState({id: ''})
 	const [posts, setPosts] = useState([])
 	const Navigate = useNavigate()
-
+	let newData={}
 
 	function runFetch() {
 		// console.log(window)
@@ -33,25 +33,24 @@ export default function EditPost(props){
 		console.log("searched");
 		runFetch();
 	}, []);
+	newData.name =name
+	newData.imageURL= imageURL
+	newData.title = title
+	newData.comments = comments
+	newData._id = id.id
+
 	function EditPostHandler(event){
 		event.preventDefault()
-		console.log(id, 'PostId')
-		EditPostData(id.id)
+		for(let post of posts){
+			if(post._id === id.id){
+				EditPostData(newData)
+			}
+		}
+		
 		Navigate('/Forum')
 	}
 	
-	
-	
-    // const [data, setData] = useState({
-	// 	name: "",
-	// 	imageURL: "",
-	// 	title: "",
-	// 	comments: "",
-	// })
-	// data.name = name
-	// data.imageURL= imageURL
-	// data.title = title
-	// data.comments = comments
+
     if(!props.loggedIn){
         return <Navigate to="/User/login" replace={true} />;
     }
@@ -121,6 +120,7 @@ export default function EditPost(props){
 				
 				
 					)
+					
 					
 		}
 	}

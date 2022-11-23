@@ -14,8 +14,9 @@ let options = {
 }
 
 export default function EditProductData(data){
-    console.log(data, 'EditProduct DATA');
-    let url = "http://localhost:9999/api/Products/"+ data
+    console.log(data, "EditProductData")
+    options.body = JSON.stringify(data)
+    let url = "http://localhost:9999/api/Products/"+ data._id
     console.log(url)
     return fetch(url,options)
             .then(response => {

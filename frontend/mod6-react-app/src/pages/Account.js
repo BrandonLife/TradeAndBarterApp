@@ -69,6 +69,7 @@ function runProductFetch() {
             setPhoneNumber(user.phoneNumber)
             setLocation(user.location)
             setOccupation(user.occupation)
+            console.log(data)
             data = data.reverse()
             data=data.slice(0, 3);
             data = data.map(item=>{
@@ -95,7 +96,7 @@ function runFetch(data){
 if(!props.loggedIn){
     return <Navigate to="/User/login" replace={true} />;
 }
-
+console.log(posts)
 const postsArray = posts.map((post,index) => {
     return (
         <ForumPost

@@ -1,3 +1,4 @@
+
 let token = document.cookie
 let options = {
     method:"PUT",
@@ -14,8 +15,8 @@ let options = {
 
 export default function EditPostData(data){
     console.log( data, "EditPostData");
-    let url = "http://localhost:9999/api/Post/"+ data
-    console.log(url)
+    options.body = JSON.stringify(data)
+    let url = "http://localhost:9999/api/Post/"+ data._id
     return fetch(url,options)
             .then(response => {
                 console.log(response)

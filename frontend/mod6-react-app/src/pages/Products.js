@@ -1,7 +1,7 @@
 import "./products.css"
 import { Navigate, Link } from "react-router-dom";
 import { getProducts } from "../services";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 export default function Products(props){
     const [productData, setProductData] = useState();
     const [products, setProducts] = useState([])
@@ -16,17 +16,20 @@ export default function Products(props){
 				}
 	    }, []);
     }
+  
+    // function loadProducts(){
+    //     let loadPostBtn = document.getElementById('load-product')
+    //     loadPostBtn.addEventListener(('click'), ()=>{
+    //         runFetch()
+    //     })
+       
+    // }
+    useEffect(()=>{
+        runFetch()
+    },[])
     if(!props.loggedIn){
         return <Navigate to="/User/login" replace={true} />;
     }
-    function loadProducts(){
-        let loadPostBtn = document.getElementById('load-product')
-        loadPostBtn.addEventListener(('click'), ()=>{
-            runFetch()
-        })
-       
-    }
-
     const productsArray = products.map((productData,index) => {
         
 		return (
@@ -50,7 +53,7 @@ export default function Products(props){
             <div className="wrapper">
             {productsArray}
             </div>
-            <button onClick={loadProducts} id="load-product">Load Products</button>
+            {/* <button onClick={loadProducts} id="load-product">Load Products</button> */}
              <button><Link to="/Products/create/product">Create New Product</Link></button>
             </div>
             // </body>
@@ -60,7 +63,7 @@ export default function Products(props){
             // <body onLoad={loadProducts()}>
             <div>
             <p>Sorry no products to display</p>
-            <button onClick={loadProducts} id="load-product">Load Products</button>
+            {/* <button onClick={loadProducts} id="load-product">Load Products</button> */}
              <button><Link to="/Products/create/product">Create Product</Link></button>
            </div>
         //    </body>
